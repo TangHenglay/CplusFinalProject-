@@ -83,3 +83,25 @@ public:
         Movie::display();
     }
 };
+
+class HorrorMovie : public Movie{
+public:
+    HorrorMovie(const string& title, const string& customer) :
+    Movie(title, customer) {}
+
+    void display() override {
+        cout << "Type: Horror" << endl;
+        Movie::display();
+    }
+};
+
+class RomanceMovie : public Movie {
+public:
+    RomanceMovie(const string& title, const string& customer) :
+    Movie(title, customer) {}
+
+    void display() override {
+        cout << "Type: Romance" << endl;
+        Movie::display();
+    }
+};
