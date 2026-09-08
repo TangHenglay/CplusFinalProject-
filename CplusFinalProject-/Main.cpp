@@ -105,3 +105,55 @@ public:
         Movie::display();
     }
 };
+vector<Movie*> movies;
+
+void addMovie() {
+    string title;
+    string type;
+    string customer;
+
+    cin.ignore();
+    cout << "\nEnter Movie Title:";
+    getline(cin, title);
+
+    cout << "Enter type:";
+    getline(cin, type);
+
+    cout << "Enter customer name:";
+    getline(cin, customer);
+
+    if(type == "Action") {
+        movies.push_back(new ActionMovie(title, customer));
+    }
+    else if(type == "Comedy") {
+        movies.push_back(new ComedyMovie(title, customer));
+    }
+    else if(type == "Horror") {
+        movies.push_back(new HorrorMovie(title, customer));
+    }
+    else if(type == "Romance") {
+        movies.push_back(new RomanceMovie(title, customer));
+    }
+    else {
+        cout << "Invalid type!" << endl;
+        return;
+    }
+    cout << "Movie added!" << endl;
+}
+
+void searchMovie() {
+    string title;
+
+    cin.ignore();
+    cout << "\nEnter Movie Title:";
+    getline(cin, title);
+
+    for(Movie*movie : movies) {
+        if(movie->getTitle() == title) {
+            cout << "\nMovie Found!" << endl;
+            movie->display();
+            return;
+        }
+    }
+    cout << "Movie not found!" << endl;
+}
