@@ -105,7 +105,12 @@ public:
         Movie::display();
     }
 };
-vector<Movie*> movies;
+
+class RentalSystem {
+
+private:
+    vector<Movie*> movies;
+public:
 
 void addMovie() {
     string title;
@@ -156,4 +161,26 @@ void searchMovie() {
         }
     }
     cout << "Movie not found!" << endl;
+}
+};
+void deleteMovie() {
+    string title;
+    cin.ignore();
+    cout << "\nEnter Movie Title:";
+    getline(cin, title);
+    for (int i = 0; i < movies.size(); i++) {
+        if (movies[i]->getTitle() == title) {
+            delete movies[i];
+            movies.erase(movies.begin() + i);
+            cout << "Movie deleted!" << endl;
+            return;
+        }
+    }
+    cout << "Movie not found!" << endl;
+
+RentalSystem() {
+    for (Movie* movie : movies) {
+        delete movie;
+    }
+}
 }
