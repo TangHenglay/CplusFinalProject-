@@ -107,15 +107,14 @@ public:
 };
 
 class RentalSystem {
-
 private:
     vector<Movie*> movies;
 public:
 
-void addMovie() {
-    string title;
-    string type;
-    string customer;
+    void addMovie() {
+        string title;
+        string type;
+        string customer;
 
     cin.ignore();
     cout << "\nEnter Movie Title:";
@@ -146,11 +145,11 @@ void addMovie() {
     cout << "Movie added!" << endl;
 }
 
-void searchMovie() {
-    string title;
+    void searchMovie() {
+        string title;
 
     cin.ignore();
-    cout << "\nEnter Movie Title:";
+    cout << "Enter Movie Title:";
     getline(cin, title);
 
     for(Movie*movie : movies) {
@@ -162,8 +161,8 @@ void searchMovie() {
     }
     cout << "Movie not found!" << endl;
 }
-};
-void deleteMovie() {
+
+    void deleteMovie() {
     string title;
     cin.ignore();
     cout << "\nEnter Movie Title:";
@@ -177,10 +176,45 @@ void deleteMovie() {
         }
     }
     cout << "Movie not found!" << endl;
+}
 
 RentalSystem() {
     for (Movie* movie : movies) {
         delete movie;
     }
 }
+
+    void updateMovie() {
+        string title;
+
+    cin.ignore();
+
+    cout << "Enter Movie Title:";
+    getline(cin, title);
+
+    for (Movie* movie : movies) {
+        if (movie->getTitle() == title) {
+            string newCustomer;
+            cout << "Enter new customer name:";
+            getline(cin, newCustomer);
+            movie->setCustomer(newCustomer);
+            cout << "Movie updated!" << endl;
+            return;
+        }
+    }
+    cout << "Movie not found!" << endl;
 }
+    void displayAllMovies() {
+
+        if (movies.empty()) {
+            cout << "\nNo movies" << endl;
+            return;
+        }
+    
+    cout <<"==== ALL MOVIES =====" << endl;
+    for (Movie* movie : movies) {
+        movie->display();
+        cout << endl;
+    }
+}
+};
